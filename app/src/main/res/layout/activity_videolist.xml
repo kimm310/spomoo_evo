@@ -30,13 +30,22 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/likeoffbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Like"
         android:drawableLeft="@drawable/baseline_thumb_up_off_alt_24"/>
+
+    <Button
+        android:id="@+id/likeonbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Like"
+        android:drawableLeft="@drawable/baseline_thumb_up_24"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
