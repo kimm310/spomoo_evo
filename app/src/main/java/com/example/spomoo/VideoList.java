@@ -15,9 +15,10 @@ public class VideoList extends AppCompatActivity {
     private VideoView videoView;
     private String[] videoNames = {"video1", "video2"};
 //Button mit durchsichtig und ausgefülltem like symbol
+    /*
     private Button loffButton = (Button) findViewById(R.id.likeoffbutton);
     private Button lonButton = (Button) findViewById(R.id.likeonbutton);
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,8 @@ public class VideoList extends AppCompatActivity {
         videoView.setVideoURI(videoUri);
         videoView.start();
     }
-
+/*
     public void buttonCLicked(View v){
 
-    }
+    }*/
 }
