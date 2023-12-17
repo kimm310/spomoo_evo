@@ -73,7 +73,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:indeterminate="false"
-        android:max="100"
+        android:max="10"
         android:progress="0"
         android:progressDrawable="@drawable/questionnaire_slider_track"
         android:splitTrack="false"
