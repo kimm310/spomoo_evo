@@ -17,12 +17,7 @@ public class VideoList extends AppCompatActivity {
 
     // an dieser stelle videos einfügen
     private String[] videoNames = {"video1", "video2"};
-//Button mit durchsichtig und ausgefülltem like symbol
-    /*
-    private Button loffButton = (Button) findViewById(R.id.likeoffbutton);
-    private Button lonButton = (Button) findViewById(R.id.likeonbutton);
-    Diese zeilen crashen die app
-*/
+    boolean isLiked = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +49,16 @@ public class VideoList extends AppCompatActivity {
         videoView.start();
     }
 
-    public void buttonCLicked(View v){
-
+    public void buttonClick(View v){
+        if (!isLiked) {
+            findViewById(R.id.likeoffbutton).setVisibility(View.INVISIBLE);
+            findViewById(R.id.likeonbutton).setVisibility(View.VISIBLE);
+            isLiked = true;
+        }
+        else if (isLiked) {
+            findViewById(R.id.likeonbutton).setVisibility(View.INVISIBLE);
+            findViewById(R.id.likeoffbutton).setVisibility(View.VISIBLE);
+            isLiked = false;
+        }
     }
 }
