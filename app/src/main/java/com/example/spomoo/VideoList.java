@@ -1,11 +1,13 @@
 package com.example.spomoo;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.VideoView;
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +19,11 @@ public class VideoList extends AppCompatActivity {
 
     // an dieser stelle videos einfügen
     private String[] videoNames = {"video1", "video2"};
+    private ArrayList<String> likedVideos = new ArrayList<>();
     boolean isLiked = false;
+
+    String videoPfad1 = "android.resource://" + getPackageName() + "/" + R.raw.video1;
+    String videoPfad2 = "android.resource://" + getPackageName() + "/" + R.raw.video2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +46,13 @@ public class VideoList extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
+        //Checke welches video läuft
+        videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+            @Override
+            public boolean onInfo(MediaPlayer mediaPlayer, int i, int i1) {
+                return false;
+            }
+        });
     }
 
     private void playVideo(String videoName) {
@@ -61,4 +74,6 @@ public class VideoList extends AppCompatActivity {
             isLiked = false;
         }
     }
+
+
 }
