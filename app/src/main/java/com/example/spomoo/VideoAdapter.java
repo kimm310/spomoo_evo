@@ -30,6 +30,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public void onBindViewHolder(VideoViewHolder holder, int position) {
         holder.tvVideoName.setText(videoNames[position]);
+        // Set the margin to reduce the space between items (adjust the values as needed)
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+        layoutParams.bottomMargin = 10; // set your desired margin
+
+
     }
 
     @Override
