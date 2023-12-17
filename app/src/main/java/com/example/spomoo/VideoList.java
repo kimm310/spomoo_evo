@@ -21,15 +21,23 @@ public class VideoList extends AppCompatActivity {
     /*
     private Button loffButton = (Button) findViewById(R.id.likeoffbutton);
     private Button lonButton = (Button) findViewById(R.id.likeonbutton);
+    Diese zeilen crashen die app
 */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videolist);
 
+        //Like button nicht geliket
+        Button likeoff = (Button) findViewById(R.id.likeoffbutton);
+
+        //LIke button geliket
+        Button likeon = (Button) findViewById(R.id.likeonbutton);
+        likeon.setVisibility(View.INVISIBLE);
+
         videoView = findViewById(R.id.videoView);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-      //  lonButton.setVisibility(View.VISIBLE); zeile crasth app iwie
+
         VideoAdapter adapter = new VideoAdapter(videoNames, this::playVideo);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -45,8 +53,8 @@ public class VideoList extends AppCompatActivity {
         videoView.setVideoURI(videoUri);
         videoView.start();
     }
-/*
+
     public void buttonCLicked(View v){
 
-    }*/
+    }
 }
