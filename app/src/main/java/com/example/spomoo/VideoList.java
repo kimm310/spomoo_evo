@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class VideoList extends AppCompatActivity {
 
     private VideoView videoView;
+
+    // an dieser stelle videos einfügen
     private String[] videoNames = {"video1", "video2"};
 //Button mit durchsichtig und ausgefülltem like symbol
     /*
@@ -30,6 +33,10 @@ public class VideoList extends AppCompatActivity {
         VideoAdapter adapter = new VideoAdapter(videoNames, this::playVideo);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
     }
 
     private void playVideo(String videoName) {
