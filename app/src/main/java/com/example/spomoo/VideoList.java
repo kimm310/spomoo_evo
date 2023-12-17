@@ -22,8 +22,6 @@ public class VideoList extends AppCompatActivity {
     private ArrayList<String> likedVideos = new ArrayList<>();
     boolean isLiked = false;
 
-    String videoPfad1 = "android.resource://" + getPackageName() + "/" + R.raw.video1;
-    String videoPfad2 = "android.resource://" + getPackageName() + "/" + R.raw.video2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +45,7 @@ public class VideoList extends AppCompatActivity {
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
         //Checke welches video läuft
-        videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(MediaPlayer mediaPlayer, int i, int i1) {
-                return false;
-            }
-        });
+
     }
 
     private void playVideo(String videoName) {
