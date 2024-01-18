@@ -50,6 +50,15 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
     private static final String USER_COLUMN_ID = "user_id";
     private static final String COLUMN_SENT = "been_sent";
 
+    //table for DigitSpanTask
+    private static final String DIGIT_SPAN_TABLE_NAME = "digit_span_tasks";
+    private static final String DIGIT_SPAN_COLUMN_ID = "digit_span_id";
+    private static final String DIGIT_SPAN_MAX_SEQUENCE_LENGTH = "max_sequence_length";
+    private static final String DIGIT_SPAN_TABLE_CREATE =
+            "CREATE TABLE " + DIGIT_SPAN_TABLE_NAME + " (" +
+                    DIGIT_SPAN_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    DIGIT_SPAN_MAX_SEQUENCE_LENGTH + " INTEGER " + ");";
+
     //table for sport activities
     public static final String SPORT_TABLE_NAME = "sport_activities";
     private static final String SPORT_COLUMN_ID = "sport_id";
@@ -180,6 +189,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
         db.execSQL(ACCELEROMETER_TABLE_CREATE);
         db.execSQL(ROTATION_TABLE_CREATE);
         db.execSQL(STEPS_TABLE_CREATE);
+        db.execSQL(DIGIT_SPAN_TABLE_CREATE);
         //TODO: add other tables
     }
 
@@ -190,6 +200,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ACCELEROMETER_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ROTATION_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + STEPS_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DIGIT_SPAN_TABLE_NAME);
         onCreate(db);
     }
 
@@ -199,6 +210,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ACCELEROMETER_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ROTATION_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + STEPS_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + DIGIT_SPAN_TABLE_NAME);
         onCreate(db);
     }
 
@@ -219,6 +231,36 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
         }else{
             System.out.println("Successful");
         }*/
+    }
+
+    public int addDigitSpanData(int sequence_length){
+        ContentValues cv = new ContentValues();
+
+        cv.put(DIGIT_SPAN_MAX_SEQUENCE_LENGTH, sequence_length);
+
+        long result = db.insert(DIGIT_SPAN_TABLE_NAME, null, cv);
+        response(result);
+
+        return 0;
+    }
+
+    public ArrayList readDigitSpanData(){
+        String query = "SELECT * FROM " + DIGIT_SPAN_TABLE_NAME;
+
+        Cursor cursor = null;
+        if(db != null)
+            cursor = db.rawQuery(query, null);
+
+        ArrayList dataArray = new ArrayList<>();
+
+        if (cursor.getCount() == 0)
+            return dataArray;
+
+        while (cursor.moveToNext()) {
+            dataArray.add(cursor.getInt(1));
+        }
+
+        return dataArray;
     }
 
     //methods for sport activities table

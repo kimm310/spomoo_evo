@@ -51,6 +51,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".DigitSpan.DigitSpanTask"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".VideoAdapter"
             android:exported="false" />
         <activity
