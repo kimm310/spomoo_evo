@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.spomoo.R;
 
@@ -133,8 +134,6 @@ public class waterTrack extends AppCompatActivity {
         if (dropCounter == 10) {
             blue2.setVisibility(View.VISIBLE);
             finishNoti.show();
-        } else if(dropCounter > 10){
-
         }
     }
 
