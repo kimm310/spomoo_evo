@@ -17,13 +17,16 @@
         android:theme="@style/Theme.Spomoo"
         tools:targetApi="31">
         <activity
+            android:name=".waterTrack"
+            android:exported="false" />
+        <activity
             android:name=".settings.Data_Privacy_Activity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".recordsport.Sport_Intensity_Activity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".settings.Reset_Password_Activity"
             android:exported="false"
@@ -72,7 +75,7 @@
         <service android:name=".recordsport.TimerService" />
         <service android:name=".sensorrecording.SensorsRecordingService" />
         <service android:name=".utility.SendRecordedDataService" />
-        <service android:name=".utility.StoreRecordedDataService"/>
+        <service android:name=".utility.StoreRecordedDataService" />
 
         <receiver android:name=".questionnaire.QuestionnaireReminder" />
         <receiver android:name=".mainscreen.MainActivity" />
