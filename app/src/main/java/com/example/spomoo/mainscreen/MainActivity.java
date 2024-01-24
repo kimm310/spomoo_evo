@@ -132,12 +132,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button buttonVideo = findViewById(R.id.video_button);
+        Button waterButton = findViewById(R.id.button5);
         buttonVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Erstellen eines Intents, um zur videoList-Activity zu wechseln
-                Intent intent = new Intent(MainActivity.this, VideoList.class);
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, VideoList.class));
+            }
+        });
+
+        waterButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, waterTrack.class));
             }
         });
 
