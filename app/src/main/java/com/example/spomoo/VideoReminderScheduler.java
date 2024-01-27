@@ -25,8 +25,8 @@ public class VideoReminderScheduler {
 
         // Set the alarm time
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 34);
+        calendar.set(Calendar.HOUR_OF_DAY, randomHour);
+        calendar.set(Calendar.MINUTE, randomMinute);
         calendar.set(Calendar.SECOND, 0);
 
         // Create an Intent for the BroadcastReceiver
