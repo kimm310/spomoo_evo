@@ -16,6 +16,7 @@ import android.os.Bundle;
 import com.example.spomoo.R;
 import com.example.spomoo.VideoList;
 import com.example.spomoo.VideoNotificationService;
+import com.example.spomoo.VideoReminderScheduler;
 import com.example.spomoo.login.LoginActivity;
 import com.example.spomoo.questionnaire.QuestionnaireReminderTimer;
 import com.example.spomoo.sensorrecording.SensorsRecordingService;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding; //layout binding
     private SharedPrefManager sharedPrefManager;    //cache sharedPrefManager
     private AlertDialog alertDialog = null; //cache alert dialog for showing the data sending progress
+    private static boolean videoReminderShownOnce = false; // becomes true when setReminder is invoked
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // uses VideoReminder and VideoReminderScheduler (works independently from VideoNotificationService)
+        if (!videoReminderShownOnce) {
+            VideoReminderScheduler.setRandomNotification(getApplicationContext());
+            videoReminderShownOnce = true;
+        }
 
 
         //if data is currently being send create the dialog
