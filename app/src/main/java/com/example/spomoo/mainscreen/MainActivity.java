@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //store dummy account
+        sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         if(sharedPrefManager.loadUser(SharedPrefManager.KEY_USER) == null){
             sharedPrefManager.storeUser(SharedPrefManager.KEY_USER, new UserData(1, "Max", "max.mustermann@test.de", "Männlich", "2000-01-01", 180, 75));
         }
 
         //cache sharedPrefManager
-        sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
         if(sharedPrefManager.loadUser(SharedPrefManager.KEY_USER) == null){
             startActivity(new Intent(this, LoginActivity.class));
             overridePendingTransition(0,0);
