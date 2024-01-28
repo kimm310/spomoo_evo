@@ -12,6 +12,7 @@ import android.database.Cursor;
 
 import androidx.annotation.Nullable;
 
+import com.example.spomoo.DigitSpan.DigitSpanData;
 import com.example.spomoo.questionnaire.QuestionnaireData;
 import com.example.spomoo.recordsport.SportData;
 import com.example.spomoo.sensorrecording.AccelerometerData;
@@ -53,11 +54,19 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
     //table for DigitSpanTask
     private static final String DIGIT_SPAN_TABLE_NAME = "digit_span_tasks";
     private static final String DIGIT_SPAN_COLUMN_ID = "digit_span_id";
-    private static final String DIGIT_SPAN_MAX_SEQUENCE_LENGTH = "max_sequence_length";
+    private static final String DIGIT_SPAN_COLUMN_DATE = "digit_span_date";
+    private static final String DIGIT_SPAN_MAX_SEQUENCE_LENGTH = "digit_span_max_sequence_length";
+    private static final String DIGIT_SPAN_TOTAL_TASKS = "digit_span_total_tasks";
+    private static final String DIGIT_SPAN_CORRECT_TASKS = "digit_span_correct_tasks";
     private static final String DIGIT_SPAN_TABLE_CREATE =
             "CREATE TABLE " + DIGIT_SPAN_TABLE_NAME + " (" +
                     DIGIT_SPAN_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    DIGIT_SPAN_MAX_SEQUENCE_LENGTH + " INTEGER " + ");";
+                    DIGIT_SPAN_COLUMN_DATE + " TEXT, " +
+                    DIGIT_SPAN_MAX_SEQUENCE_LENGTH + " INTEGER, " +
+                    DIGIT_SPAN_TOTAL_TASKS + " INTEGER, " +
+                    DIGIT_SPAN_CORRECT_TASKS + " INTEGER, " +
+                    USER_COLUMN_ID + " INTEGER, " +
+                    COLUMN_SENT + " INTEGER" + ");";
 
     //table for sport activities
     public static final String SPORT_TABLE_NAME = "sport_activities";
@@ -226,17 +235,23 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
 
     //helper function for feedback
     void response(long result){
-        /*if(result == -1){
+        if(result == -1){
             System.out.println("Failed");
         }else{
             System.out.println("Successful");
-        }*/
+        }
     }
 
-    public int addDigitSpanData(int sequence_length){
+    public int addDigitSpanData(DigitSpanData digitSpanData, int beenSent){
         ContentValues cv = new ContentValues();
 
-        cv.put(DIGIT_SPAN_MAX_SEQUENCE_LENGTH, sequence_length);
+        cv.put(DIGIT_SPAN_MAX_SEQUENCE_LENGTH, digitSpanData.getMax_sequence_length());
+        cv.put(DIGIT_SPAN_TOTAL_TASKS, digitSpanData.getTotal_tasks());
+        cv.put(DIGIT_SPAN_CORRECT_TASKS, digitSpanData.getCorrect_tasks());
+        if(beenSent == 0) cv.put(DIGIT_SPAN_COLUMN_DATE, digitSpanData.getDate());
+        else cv.put(DIGIT_SPAN_COLUMN_DATE, TimeDateFormatter.toUIDate(digitSpanData.getDate()));
+        cv.put(USER_COLUMN_ID, SharedPrefManager.getInstance(context.getApplicationContext()).getInt(SharedPrefManager.KEY_USER_ID));
+        cv.put(COLUMN_SENT, beenSent);
 
         long result = db.insert(DIGIT_SPAN_TABLE_NAME, null, cv);
         response(result);
@@ -244,20 +259,28 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
         return 0;
     }
 
-    public ArrayList readDigitSpanData(){
-        String query = "SELECT * FROM " + DIGIT_SPAN_TABLE_NAME;
+    public ArrayList<DigitSpanData> readDigitSpanData(String date){
+        String query = "SELECT * FROM " + DIGIT_SPAN_TABLE_NAME + DIGIT_SPAN_COLUMN_DATE + "=" + "\"" + date + "\"";
 
         Cursor cursor = null;
         if(db != null)
             cursor = db.rawQuery(query, null);
 
-        ArrayList dataArray = new ArrayList<>();
+        ArrayList<DigitSpanData> dataArray = new ArrayList<>();
 
         if (cursor.getCount() == 0)
             return dataArray;
 
         while (cursor.moveToNext()) {
-            dataArray.add(cursor.getInt(1));
+            DigitSpanData data = new DigitSpanData();
+            data.setDigitSpanId(cursor.getInt(0));
+            data.setDate(cursor.getString(1));
+            data.setMax_sequence_length(cursor.getInt(2));
+            data.setTotal_tasks(cursor.getInt(3));
+            data.setCorrect_tasks(cursor.getInt(4));
+            data.setUserId(cursor.getInt(5));
+            data.setBeenSent(cursor.getInt(6));
+            dataArray.add(data);
         }
 
         return dataArray;
