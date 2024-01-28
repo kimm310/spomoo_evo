@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.spomoo.R;
 import com.example.spomoo.mainscreen.MainActivity;
 import com.example.spomoo.utility.LocalDatabaseManager;
+import com.example.spomoo.utility.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -39,6 +40,7 @@ public class DigitSpanTask extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
         setContentView(R.layout.activity_digit_span_task);
 
         txtDigitSequence = findViewById(R.id.txtDigitView);
@@ -58,10 +60,6 @@ public class DigitSpanTask extends AppCompatActivity {
 
         test = findViewById(R.id.dbTest);
         LocalDatabaseManager db = new LocalDatabaseManager(this);
-        ArrayList array = db.readDigitSpanData();
-        for (Object i : array) {
-            test.setText(i.toString());
-        }
 
         // Set up the Info Button in the Action Bar
         if (getSupportActionBar() != null) {
@@ -370,8 +368,9 @@ public class DigitSpanTask extends AppCompatActivity {
     }
 
     public void saveTest() {
+        DigitSpanData digitSpanData = new DigitSpanData(maxSequenceLength, totalTasks, correctTasks, "test", 1, 1, 0);
         LocalDatabaseManager db = new LocalDatabaseManager(this);
-        db.addDigitSpanData(sequenceLength);
+        db.addDigitSpanData(digitSpanData, 0);
     }
 
     /*
