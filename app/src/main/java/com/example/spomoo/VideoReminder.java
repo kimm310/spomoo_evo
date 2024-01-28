@@ -20,7 +20,7 @@ public class VideoReminder extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d("VideoReminder", "createNotificationChannel called");
+        Log.d("VideoReminder", "onReceive called");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 

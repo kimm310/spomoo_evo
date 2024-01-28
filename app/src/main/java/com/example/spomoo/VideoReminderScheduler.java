@@ -63,7 +63,7 @@ public class VideoReminderScheduler {
         // Cancel any existing alarms with this PendingIntent and schedule a new one
         if (alarmManager != null) {
             alarmManager.cancel(pendingIntent);
-            alarmManager.setExact(
+            alarmManager.set(
                     AlarmManager.RTC_WAKEUP,
                     calendar.getTimeInMillis(),
                     pendingIntent

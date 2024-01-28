@@ -31,6 +31,7 @@ import com.google.android.material.color.DynamicColors;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -60,11 +61,11 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding; //layout binding
     private SharedPrefManager sharedPrefManager;    //cache sharedPrefManager
     private AlertDialog alertDialog = null; //cache alert dialog for showing the data sending progress
-    private static boolean videoReminderShownOnce = false; // becomes true when setReminder is invoked
+    private static boolean videoReminderSetOnce = false; // becomes true when setReminder is invoked
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Log.d("MainActivity", "videoReminderSetOnce: " + String.valueOf(videoReminderSetOnce));
         //create splashscreen
         SplashScreen.installSplashScreen(this);
 
@@ -145,9 +146,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // uses VideoReminder and VideoReminderScheduler (works independently from VideoNotificationService)
-        if (!videoReminderShownOnce) {
+        if (!videoReminderSetOnce) {
             VideoReminderScheduler.setRandomNotification(getApplicationContext());
-            videoReminderShownOnce = true;
+            videoReminderSetOnce = true;
         }
 
 
