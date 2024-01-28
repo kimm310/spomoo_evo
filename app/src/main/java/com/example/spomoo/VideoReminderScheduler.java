@@ -43,9 +43,12 @@ public class VideoReminderScheduler {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        // Check if the generated time is in the past, add a day if so
-        if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        // Check if the generated time is in the past, add an hour if so
+        while (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            calendar.add(Calendar.HOUR_OF_DAY, 1);
+            if (calendar.HOUR_OF_DAY == 16) {
+                break;
+            }
         }
 
         // Create an Intent for the BroadcastReceiver
