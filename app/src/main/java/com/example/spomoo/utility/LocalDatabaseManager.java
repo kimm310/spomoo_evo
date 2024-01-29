@@ -55,6 +55,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
     private static final String DIGIT_SPAN_TABLE_NAME = "digit_span_tasks";
     private static final String DIGIT_SPAN_COLUMN_ID = "digit_span_id";
     private static final String DIGIT_SPAN_COLUMN_DATE = "digit_span_date";
+    private static final String DIGIT_SPAN_COLUMN_TIME = "digit_span_time";
     private static final String DIGIT_SPAN_MAX_SEQUENCE_LENGTH = "digit_span_max_sequence_length";
     private static final String DIGIT_SPAN_TOTAL_TASKS = "digit_span_total_tasks";
     private static final String DIGIT_SPAN_CORRECT_TASKS = "digit_span_correct_tasks";
@@ -62,6 +63,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
             "CREATE TABLE " + DIGIT_SPAN_TABLE_NAME + " (" +
                     DIGIT_SPAN_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     DIGIT_SPAN_COLUMN_DATE + " TEXT, " +
+                    DIGIT_SPAN_COLUMN_TIME + " TEXT, " +
                     DIGIT_SPAN_MAX_SEQUENCE_LENGTH + " INTEGER, " +
                     DIGIT_SPAN_TOTAL_TASKS + " INTEGER, " +
                     DIGIT_SPAN_CORRECT_TASKS + " INTEGER, " +
@@ -242,6 +244,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
         }
     }
 
+    //Methods for DigitSpan table
     public int addDigitSpanData(DigitSpanData digitSpanData, int beenSent){
         ContentValues cv = new ContentValues();
 
@@ -250,6 +253,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
         cv.put(DIGIT_SPAN_CORRECT_TASKS, digitSpanData.getCorrect_tasks());
         if(beenSent == 0) cv.put(DIGIT_SPAN_COLUMN_DATE, digitSpanData.getDate());
         else cv.put(DIGIT_SPAN_COLUMN_DATE, TimeDateFormatter.toUIDate(digitSpanData.getDate()));
+        cv.put(DIGIT_SPAN_COLUMN_TIME, digitSpanData.getTime());
         cv.put(USER_COLUMN_ID, SharedPrefManager.getInstance(context.getApplicationContext()).getInt(SharedPrefManager.KEY_USER_ID));
         cv.put(COLUMN_SENT, beenSent);
 
@@ -260,7 +264,7 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
     }
 
     public ArrayList<DigitSpanData> readDigitSpanData(String date){
-        String query = "SELECT * FROM " + DIGIT_SPAN_TABLE_NAME + DIGIT_SPAN_COLUMN_DATE + "=" + "\"" + date + "\"";
+        String query = "SELECT * FROM " + DIGIT_SPAN_TABLE_NAME + " WHERE " + DIGIT_SPAN_COLUMN_DATE + "=" + "\"" + date + "\"";
 
         Cursor cursor = null;
         if(db != null)
@@ -275,15 +279,58 @@ public class LocalDatabaseManager extends SQLiteOpenHelper {
             DigitSpanData data = new DigitSpanData();
             data.setDigitSpanId(cursor.getInt(0));
             data.setDate(cursor.getString(1));
-            data.setMax_sequence_length(cursor.getInt(2));
-            data.setTotal_tasks(cursor.getInt(3));
-            data.setCorrect_tasks(cursor.getInt(4));
-            data.setUserId(cursor.getInt(5));
-            data.setBeenSent(cursor.getInt(6));
+            data.setTime(cursor.getString(2));
+            data.setMax_sequence_length(cursor.getInt(3));
+            data.setTotal_tasks(cursor.getInt(4));
+            data.setCorrect_tasks(cursor.getInt(5));
+            data.setUserId(cursor.getInt(6));
+            data.setBeenSent(cursor.getInt(7));
             dataArray.add(data);
         }
 
         return dataArray;
+    }
+
+    public ArrayList<DigitSpanData> readUnsendDigitSpanData(){
+        String query = "SELECT * FROM " + DIGIT_SPAN_TABLE_NAME + " WHERE " + COLUMN_SENT + "= 0";
+
+        Cursor cursor = null;
+        if(db != null)
+            cursor = db.rawQuery(query, null);
+
+        ArrayList<DigitSpanData> dataArray = new ArrayList<>();
+
+        if (cursor.getCount() == 0)
+            return dataArray;
+
+        while (cursor.moveToNext()) {
+            DigitSpanData data = new DigitSpanData();
+            data.setDigitSpanId(cursor.getInt(0));
+            data.setDate(cursor.getString(1));
+            data.setTime(cursor.getString(2));
+            data.setMax_sequence_length(cursor.getInt(3));
+            data.setTotal_tasks(cursor.getInt(4));
+            data.setCorrect_tasks(cursor.getInt(5));
+            data.setUserId(cursor.getInt(6));
+            data.setBeenSent(cursor.getInt(7));
+            dataArray.add(data);
+        }
+
+        return dataArray;
+    }
+
+    public void markDigitSpanDataAsSent(){
+        String query = "UPDATE " + DIGIT_SPAN_TABLE_NAME + " SET " + COLUMN_SENT + "= 1 "  + " WHERE " + COLUMN_SENT + "= 0";
+        db.execSQL(query);
+    }
+
+    public void deleteDigitSpanData(String id){
+        long result = db.delete(DIGIT_SPAN_TABLE_NAME, DIGIT_SPAN_COLUMN_ID+"=?", new String[]{id});
+        response(result);
+    }
+
+    public void deleteAllDigitSpanData(){
+        db.execSQL("DELETE FROM " + DIGIT_SPAN_TABLE_NAME);
     }
 
     //methods for sport activities table

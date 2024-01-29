@@ -150,8 +150,8 @@ public class Main_Data_Fragment extends Fragment {
     private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         @StringRes
-        private final int[] TAB_TITLES = new int[]{R.string.main_data_week_title ,R.string.main_data_tab_sport_activities, R.string.main_data_tab_questionnaires, R.string.main_data_tab_sensors};
-        private final Fragment[] fragments = new Fragment[]{new Main_Data_Week_Fragment() ,new Main_Data_Sports_Fragment(), new Main_Data_Questionnaire_Fragment(), new Main_Data_Sensor_Fragment()};
+        private final int[] TAB_TITLES = new int[]{R.string.main_data_week_title ,R.string.main_data_tab_sport_activities, R.string.main_data_tab_questionnaires, R.string.main_data_tab_digit_span_title, R.string.main_data_tab_sensors};
+        private final Fragment[] fragments = new Fragment[]{new Main_Data_Week_Fragment() ,new Main_Data_Sports_Fragment(), new Main_Data_Questionnaire_Fragment(), new Main_Data_Digit_Span_Fragment(), new Main_Data_Sensor_Fragment()};
         private final Context mContext;
 
         public SectionsPagerAdapter(Context context, FragmentManager fm) {

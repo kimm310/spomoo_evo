@@ -7,6 +7,8 @@ public class DigitSpanData {
     //attributes
     @SerializedName("date")
     private String date;
+    @SerializedName("time")
+    private String time;
     @SerializedName("digitSpanid")
     private int digitSpanId;
     @SerializedName("userid")
@@ -22,14 +24,22 @@ public class DigitSpanData {
 
     public DigitSpanData() {}
 
-    public DigitSpanData(int max_sequence_length, int total_tasks, int correct_tasks ,String date, int digitSpanId, int userId, int beenSent){
+    public DigitSpanData(int max_sequence_length, int total_tasks, int correct_tasks ,String date, String time, int userId, int beenSent){
         setMax_sequence_length(max_sequence_length);
         setTotal_tasks(total_tasks);
         setCorrect_tasks(correct_tasks);
         setDate(date);
-        setDigitSpanId(digitSpanId);
+        setTime(time);
         setUserId(userId);
         setBeenSent(beenSent);
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getDigitSpanId() {

@@ -66,6 +66,8 @@
     <string name="main_record_info_2">Save a not recorded sport activity!</string>
     <string name="main_record_heading_3">Questionnaire</string>
     <string name="main_record_info_3">Answer a questionnaire about your mental health!</string>
+    <string name="main_record_heading_4">Digit Span</string>
+    <string name="main_record_info_4">Complete a Digit Span Task</string>
 
     <string-array name="sport_types_array">
         <item>Aerobics</item>
@@ -399,5 +401,24 @@
     <string name="server_edit_user_data_incorrect_password">Password is incorrect</string>
     <string name="server_edit_user_data_email_taken">eMail address is already taken</string>
     <string name="server_edit_user_data_error">An error occurred while updating your data. Please try again later</string>
+
+    <string name="main_data_tab_digit_span_title">Digit Span</string>
+    <string name="main_data_tab_digit_span_max_sequence_length">Max Sequence Length</string>
+    <string name="main_data_tab_digit_span_total_tasks">Total Tasks</string>
+    <string name="main_data_tab_digit_span_correct_tasks">Correct Tasks</string>
+
+    <string name="digit_span_title">Digit Span Task</string>
+    <string name="digit_span_explanation">In the following digit span task, you will be given a sequence of digits presented one at a time, starting with a sequence length of two. You must enter them in the order in which they were shown to you. \n\nGiven a sequence length, if you enter the correct sequence of digits twice, the following sequence will be one digit longer. This applies until you enter the wrong sequence twice for a given sequence length or until you reach a sequence length of 12.</string>
+    <string name="digit_span_wait">wait</string>
+    <string name="digit_span_enter_digits">enter digits</string>
+    <string name="digit_span_correct_input">correct input</string>
+    <string name="digit_span_false_input">false input</string>
+    <string name="digit_span_done">done</string>
+    <string name="digit_span_end">End of Task</string>
+    <string name="digit_span_end_text">You reached a sequence length of: </string>
+    <string name="digit_span_max">Reached max sequence length</string>
+    <string name="digit_span_max_text">Reached the max sequence length of: </string>
+    <string name="digit_span_saved">saved digit span</string>
+    <string name="digit_span_got_it">Got it!</string>
 
 </resources>
