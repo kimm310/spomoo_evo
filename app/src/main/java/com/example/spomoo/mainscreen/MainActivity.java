@@ -18,16 +18,13 @@ import android.os.Bundle;
 import com.example.spomoo.MidnightReset;
 import com.example.spomoo.R;
 import com.example.spomoo.VideoList;
-import com.example.spomoo.VideoNotificationService;
 import com.example.spomoo.VideoReminderScheduler;
-import com.example.spomoo.login.LoginActivity;
 import com.example.spomoo.questionnaire.QuestionnaireReminderTimer;
 import com.example.spomoo.sensorrecording.SensorsRecordingService;
 import com.example.spomoo.utility.ConstantsBroadcast;
 import com.example.spomoo.utility.SendRecordedDataService;
 import com.example.spomoo.utility.SharedPrefManager;
 import com.example.spomoo.utility.TimeDateFormatter;
-import com.example.spomoo.VideoList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.color.DynamicColors;
 
@@ -322,20 +319,6 @@ public class MainActivity extends AppCompatActivity {
 
         //reset inputted date of Main_Data_Fragment on each reload
         sharedPrefManager.setString(SharedPrefManager.KEY_DATA_DATE, "");
-
-        VideoNotificationService service = new VideoNotificationService(getApplicationContext());
-        Button showNotificationButton = findViewById(R.id.showNotificationButton);
-
-        // Set an OnClickListener for the button
-        showNotificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This code will be executed when the button is clicked
-                // You can trigger your notification logic here
-                service.showNotification();
-            }
-        });
-
 
     }
 
