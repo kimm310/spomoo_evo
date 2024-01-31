@@ -422,4 +422,8 @@
     <string name="digit_span_saved">digit span gespeichert</string>
     <string name="digit_span_got_it">verstanden!</string>
 
+    <string name="digit_span_transition_message">Möchten Sie zusätzlich eine einen Digit Span Tasks machen?</string>
+    <string name="digit_span_transition_yes">ja</string>
+    <string name="digit_span_transition_no">nein</string>
+
 </resources>

@@ -421,4 +421,8 @@
     <string name="digit_span_saved">saved digit span</string>
     <string name="digit_span_got_it">Got it!</string>
 
+    <string name="digit_span_transition_message">Do you want to additionally complete a Digit Span Task?</string>
+    <string name="digit_span_transition_yes">yes</string>
+    <string name="digit_span_transition_no">no</string>
+
 </resources>
