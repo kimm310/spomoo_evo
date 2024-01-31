@@ -58,6 +58,7 @@ public class waterTrack extends AppCompatActivity {
     private static final String KEY_TEXT_MES = "textMes";
     private SharedPreferences preferences;
     AlertDialog.Builder finishNoti;
+    AlertDialog.Builder startNoti;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +90,15 @@ public class waterTrack extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
         dropCounter = 0;
         upperText.setVisibility(View.VISIBLE);
+        startNoti = new AlertDialog.Builder(this);
+        startNoti.setMessage("You can do it! Try to drink 10 glasses of water per day!");
+        startNoti.setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        startNoti.show();
 
         finishNoti = new AlertDialog.Builder(this);
         finishNoti.setMessage(R.string.waterEpicDesc);
