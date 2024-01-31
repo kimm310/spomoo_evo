@@ -19,27 +19,63 @@ public class VideoReminderScheduler {
     public static void setRandomNotification(Context context) {
         Log.d("VideoReminderScheduler", "setRandomNotification called");
 
-        // Create a random time between 8am and 5pm
-        int randomHour = new Random().nextInt(10) + 8; // Random number between 8 and 17
-        int randomMinute = new Random().nextInt(60); // Random number between 0 and 59
-
-        // Set the alarm time
         Calendar calendar = Calendar.getInstance();
+        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        // Define the allowed time range
+        int startHour = 8; // Start time (8 AM)
+        int endHour = 17; // End time (5 PM)
+
+        if (!(currentHour >= 17)) {
+            // Schedule two random notifications within the allowed time frame
+            scheduleNotification(context, startHour, endHour, 0); // First notification
+            scheduleNotification(context, startHour, endHour, 1); // Second notification
+        }
+    }
+
+    private static void scheduleNotification(Context context, int startHour, int endHour, int requestCode) {
+        Random random = new Random();
+
+        // Create a calendar instance for the random time within allowed hours
+        Calendar calendar = Calendar.getInstance();
+        int randomHour = random.nextInt(endHour - startHour) + startHour;
+        int randomMinute = random.nextInt(60);
         calendar.set(Calendar.HOUR_OF_DAY, randomHour);
         calendar.set(Calendar.MINUTE, randomMinute);
         calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        // Check if the generated time is in the past, add an hour if so
+        while (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            calendar.add(Calendar.HOUR_OF_DAY, 1);
+            if (calendar.get(Calendar.HOUR_OF_DAY) == 16) {
+                break;
+            }
+        }
 
         // Create an Intent for the BroadcastReceiver
         Intent intent = new Intent(context, VideoReminder.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context,
+                requestCode, // Use requestCode to differentiate the pending intents
+                intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+        );
 
         // Get the AlarmManager service
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        // Set a repeating alarm that triggers once a day
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pendingIntent);
+        // Cancel any existing alarms with this PendingIntent and schedule a new one
+        if (alarmManager != null) {
+            alarmManager.cancel(pendingIntent);
+            alarmManager.set(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.getTimeInMillis(),
+                    pendingIntent
+            );
+        }
+
+        // Log the scheduled times for debugging purposes
+        Log.d("VideoReminderScheduler", "Scheduled notification at: " + calendar.getTime().toString());
     }
-
-
 }
