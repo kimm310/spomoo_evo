@@ -88,6 +88,7 @@ public class waterTrack extends AppCompatActivity {
         upperText = findViewById(R.id.uppertext);
         backButton = findViewById(R.id.backButton);
         dropCounter = 0;
+        upperText.setVisibility(View.VISIBLE);
 
         finishNoti = new AlertDialog.Builder(this);
         finishNoti.setMessage(R.string.waterEpicDesc);

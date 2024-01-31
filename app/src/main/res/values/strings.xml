@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Spomoo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="waterEpicText">You can do it! \n Drink some water 10 times per day!</string>
     <string name="title_login">Login</string>
     <string name="title_registration">Registration</string>
     <string name="waterEpicDesc">Congrats! You drank enough water for today! You can reset and track more if you want.</string>

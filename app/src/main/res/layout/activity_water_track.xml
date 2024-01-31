@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".mainscreen.waterTrack">
 
+    <TextView
+        android:id="@+id/uppertext"
+        android:layout_width="318dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="104dp"
+        android:text="You can do it! Try to drink 10 glasses of water per day!"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="51dp"
@@ -227,19 +240,6 @@
         android:layout_marginTop="664dp"
         android:onClick="reset"
         android:text="Reset"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/uppertext"
-        android:layout_width="318dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="104dp"
-        android:text="You can do it! \n Drink some water 10 times per day!"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
