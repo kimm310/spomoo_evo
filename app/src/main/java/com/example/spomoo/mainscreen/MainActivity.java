@@ -71,11 +71,6 @@ public class MainActivity extends AppCompatActivity {
         //cache sharedPrefManager
         sharedPrefManager = SharedPrefManager.getInstance(getApplicationContext());
 
-        //DUMMY
-        if(sharedPrefManager.loadUser(SharedPrefManager.KEY_USER) == null){
-            sharedPrefManager.storeUser(SharedPrefManager.KEY_USER, new UserData(1, "Max", "max.mustermann@test.de", "Männlich", "2000-01-01", 180, 75));
-        }
-
         //open login if not logged in
         if(sharedPrefManager.loadUser(SharedPrefManager.KEY_USER) == null){
             startActivity(new Intent(this, LoginActivity.class));
