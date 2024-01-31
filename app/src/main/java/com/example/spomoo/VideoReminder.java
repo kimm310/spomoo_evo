@@ -31,7 +31,7 @@ public class VideoReminder extends BroadcastReceiver {
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(notificationChannel);
 
-            // Initialise intent to open MainActivity
+            // Initialise intent to open VideoList
             Intent notificationIntent = new Intent(context, VideoList.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 

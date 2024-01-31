@@ -26,9 +26,11 @@ public class VideoReminderScheduler {
         int startHour = 8; // Start time (8 AM)
         int endHour = 17; // End time (5 PM)
 
-        // Schedule two random notifications within the allowed time frame
-        scheduleNotification(context, startHour, endHour, 0); // First notification
-        scheduleNotification(context, startHour, endHour, 1); // Second notification
+        if (!(currentHour >= 17)) {
+            // Schedule two random notifications within the allowed time frame
+            scheduleNotification(context, startHour, endHour, 0); // First notification
+            scheduleNotification(context, startHour, endHour, 1); // Second notification
+        }
     }
 
     private static void scheduleNotification(Context context, int startHour, int endHour, int requestCode) {
@@ -46,7 +48,7 @@ public class VideoReminderScheduler {
         // Check if the generated time is in the past, add an hour if so
         while (calendar.getTimeInMillis() < System.currentTimeMillis()) {
             calendar.add(Calendar.HOUR_OF_DAY, 1);
-            if (calendar.HOUR_OF_DAY == 16) {
+            if (calendar.get(Calendar.HOUR_OF_DAY) == 16) {
                 break;
             }
         }

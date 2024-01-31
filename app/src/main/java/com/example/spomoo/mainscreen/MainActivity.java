@@ -7,12 +7,15 @@ package com.example.spomoo.mainscreen;
  */
 
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import com.example.spomoo.MidnightReset;
 import com.example.spomoo.R;
 import com.example.spomoo.VideoList;
 import com.example.spomoo.VideoNotificationService;
@@ -49,6 +52,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.Calendar;
+
 /*
  * Main Activity showing the fragments Main_Home_Fragment, Main_Record_Fragment, Main_Data_Fragment and Main_Settings_Fragment
  * Contains a top action bar for navigation between these fragments and showing the streaks
@@ -65,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("MainActivity", "videoReminderSetOnce: " + String.valueOf(videoReminderSetOnce));
+        Log.d("MainActivity_onCreate", "videoReminderSetOnce: " + String.valueOf(videoReminderSetOnce));
         //create splashscreen
         SplashScreen.installSplashScreen(this);
 
@@ -145,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Set up the alarm to trigger MidnightReset at midnight
+        setMidnightAlarm();
+
         // uses VideoReminder and VideoReminderScheduler (works independently from VideoNotificationService)
         if (!videoReminderSetOnce) {
             VideoReminderScheduler.setRandomNotification(getApplicationContext());
@@ -184,6 +192,37 @@ public class MainActivity extends AppCompatActivity {
         };
         registerReceiver(broadcastReceiver, intentFilter);
     }
+
+    private void setMidnightAlarm() {
+        Log.d("MainActivity", "setMidnightAlarm called");
+        Calendar midnightCalendar = Calendar.getInstance();
+        midnightCalendar.set(Calendar.HOUR_OF_DAY, 23);
+        midnightCalendar.set(Calendar.MINUTE, 55);
+        midnightCalendar.set(Calendar.SECOND, 0);
+
+        Intent intent = new Intent(getApplicationContext(), MidnightReset.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE
+        );
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                midnightCalendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,
+                pendingIntent
+        );
+    }
+
+    public static void resetVideoReminderFlag() {
+        Log.d("MainActivity", "resetVideoReminderFlag called");
+        videoReminderSetOnce = false;
+    }
+
+
 
     //overwrite for going back a fragment
     @Override
