@@ -20,7 +20,8 @@ public class VideoList extends AppCompatActivity {
     private VideoView videoView;
 
     // an dieser stelle videos einfügen
-    private String[] videoNames = {"video1", "video2"};
+    public String[] videoNames = {"video1", "video2"};
+    public boolean[] isFav = {false, true};
     //private ArrayList<String> likedVideos = new ArrayList<>();
     boolean isLiked = false;
     AlertDialog.Builder favList;
@@ -59,6 +60,13 @@ public class VideoList extends AppCompatActivity {
 
             }
         });
+
+        favList.setMultiChoiceItems(videoNames, isFav, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+
+            }
+        });
     }
 
     private void playVideo(String videoName) {
@@ -78,6 +86,7 @@ public class VideoList extends AppCompatActivity {
         else if (isLiked) {
             findViewById(R.id.likeonbutton).setVisibility(View.INVISIBLE);
             findViewById(R.id.likeoffbutton).setVisibility(View.VISIBLE);
+            favList.show();
             isLiked = false;
         }
     }
