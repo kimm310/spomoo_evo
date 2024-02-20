@@ -1,5 +1,6 @@
 package com.example.spomoo;
 
+import android.app.AlertDialog;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,8 +20,9 @@ public class VideoList extends AppCompatActivity {
 
     // an dieser stelle videos einfügen
     private String[] videoNames = {"video1", "video2"};
-    private ArrayList<String> likedVideos = new ArrayList<>();
+    //private ArrayList<String> likedVideos = new ArrayList<>();
     boolean isLiked = false;
+    AlertDialog.Builder favList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class VideoList extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
-        //Checke welches video läuft
+        favList  = new AlertDialog.Builder(VideoList.this);
 
     }
 
