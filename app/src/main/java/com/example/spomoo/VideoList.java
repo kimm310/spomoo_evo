@@ -1,6 +1,7 @@
 package com.example.spomoo;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,8 +47,18 @@ public class VideoList extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
+
+        //Builder in favList gespeichert
         favList  = new AlertDialog.Builder(VideoList.this);
 
+        //Nachricht un Button gesetzt
+        favList.setMessage("Choose your favourite Videos!");
+        favList.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
     }
 
     private void playVideo(String videoName) {
@@ -61,6 +72,7 @@ public class VideoList extends AppCompatActivity {
         if (!isLiked) {
             findViewById(R.id.likeoffbutton).setVisibility(View.INVISIBLE);
             findViewById(R.id.likeonbutton).setVisibility(View.VISIBLE);
+            favList.show();
             isLiked = true;
         }
         else if (isLiked) {
