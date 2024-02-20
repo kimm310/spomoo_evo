@@ -6,6 +6,8 @@ package com.example.spomoo.questionnaire;
  * License: MIT License
  */
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,12 +22,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.spomoo.DigitSpan.DigitSpanTask;
 import com.example.spomoo.R;
 import com.example.spomoo.databinding.FragmentQuestionnaireMessageBinding;
 import com.example.spomoo.utility.LocalDatabaseManager;
 import com.example.spomoo.utility.SharedPrefManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Random;
 
 /*
  * Message Fragment of Questionnaire Activity for inputting own note
@@ -96,14 +101,53 @@ public class Questionnaire_Message_Fragment extends Fragment {
         //feedback for user that data is saved
         Toast.makeText(getContext(), getString(R.string.questionnaire_saved), Toast.LENGTH_SHORT).show();
 
-        //exit questionnaire
-        getActivity().finish();
+        randomDigitSpan();
     }
 
     private void storeInDB(){
         QuestionnaireData data = sharedPrefManager.loadQuestionnaire(SharedPrefManager.KEY_CURRENT_QUESTIONNAIRE);
         LocalDatabaseManager db = new LocalDatabaseManager(getContext());
         db.addQuestionnaireData(data, 0);
+    }
+
+    //set a random alert to aks if the user wants to do a a Digit Span Task
+    private void randomDigitSpan(){
+        int random = new Random().nextInt(2);
+        System.out.println(random);
+        if (random == 1) {
+            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(getContext());
+            builder.setTitle(R.string.digit_span_title);
+            builder.setMessage(R.string.digit_span_transition_message);
+
+            builder.setPositiveButton(R.string.digit_span_transition_yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getContext(), DigitSpanTask.class);
+                    startActivity(intent);
+                }
+            });
+
+            builder.setNegativeButton(R.string.digit_span_transition_no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //exit questionnaire
+                    getActivity().finish();
+                }
+            });
+
+            builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    //exit questionnaire
+                    getActivity().finish();
+                }
+            });
+
+            //Create and show the alert
+            androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+        else {  getActivity().finish();}
     }
 
     //custom InputFilter to not allow paragraphs

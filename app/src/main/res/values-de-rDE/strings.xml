@@ -67,6 +67,8 @@
     <string name="main_record_info_2">Speichere eine Sport Aktivität, die Du nicht aufgzeichnet hast!</string>
     <string name="main_record_heading_3">Fragebogen</string>
     <string name="main_record_info_3">Beantworte einen Fragebogen zu Deiner psychischen Gesundheit!</string>
+    <string name="main_record_heading_4">Digit Span</string>
+    <string name="main_record_info_4">Absolviere einen Digit Span Task</string>
 
     <string-array name="sport_types_array">
         <item>Aerobic</item>
@@ -400,5 +402,28 @@
     <string name="server_edit_user_data_incorrect_password">Passwort ist falsch</string>
     <string name="server_edit_user_data_email_taken">eMail Adresse ist bereits vergeben</string>
     <string name="server_edit_user_data_error">Ein Fehler ist während des Ändern Deiner Daten aufgetreten. Versuche es bitte später erneut</string>
+
+    <string name="main_data_tab_digit_span_title">Digit Span</string>
+    <string name="main_data_tab_digit_span_max_sequence_length">Maximale länge</string>
+    <string name="main_data_tab_digit_span_total_tasks">Gesamtanzahl Tasks</string>
+    <string name="main_data_tab_digit_span_correct_tasks">Korrekte Tasks</string>
+
+    <string name="digit_span_title">Digit Span Task</string>
+    <string name="digit_span_explanation">In dem folgenden Digit Span Task wird Ihnen eine Folge von Ziffern, beginnend mit einer Sequenzlänge von zwei, nacheinander angezeigt. Sie müssen sie diese in der Reihenfolge eingeben, in der sie Ihnen gezeigt wurden. \n\nWenn Sie bei einer Sequenzlänge zweimal die richtige Ziffernfolge eingeben, ist die folgende Sequenz um eine Ziffer länger. Dies geht so lange weiter, bis Sie bei einer bestimmten Sequenzlänge zweimal die falsche Sequenz eingeben oder eine Seqeuzlänge von 12 erreichen.</string>
+    <string name="digit_span_wait">warten</string>
+    <string name="digit_span_enter_digits">Ziffern eingeben</string>
+    <string name="digit_span_correct_input">Eingabe korrekt</string>
+    <string name="digit_span_false_input">Eingabe falsche</string>
+    <string name="digit_span_done">ende</string>
+    <string name="digit_span_end">Ende des Tasks</string>
+    <string name="digit_span_end_text">Ihre erreichte Sequenzlänge beträgt: </string>
+    <string name="digit_span_max">Maximale Sequenzlänge erreicht</string>
+    <string name="digit_span_max_text">Sie haben die maximale Sequenzlänge erreicht: </string>
+    <string name="digit_span_saved">digit span gespeichert</string>
+    <string name="digit_span_got_it">verstanden!</string>
+
+    <string name="digit_span_transition_message">Möchten Sie zusätzlich eine einen Digit Span Tasks machen?</string>
+    <string name="digit_span_transition_yes">ja</string>
+    <string name="digit_span_transition_no">nein</string>
 
 </resources>

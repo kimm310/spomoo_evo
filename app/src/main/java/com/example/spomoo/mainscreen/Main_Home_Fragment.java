@@ -84,6 +84,8 @@ public class Main_Home_Fragment extends Fragment {
             startActivity(new Intent(getContext(), Questionnaire_Activity.class));
         });
 
+        sharedPrefManager.setBool(sharedPrefManager.KEY_STEP_COUNTER_ENABLED, true);
+
         //set all texts
         setAllTexts();
 

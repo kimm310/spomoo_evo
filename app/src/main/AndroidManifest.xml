@@ -5,9 +5,11 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.SENSOR_ACCELEROMETER"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -17,13 +19,16 @@
         android:theme="@style/Theme.Spomoo"
         tools:targetApi="31">
         <activity
+            android:name=".mainscreen.waterTrack"
+            android:exported="false" />
+        <activity
             android:name=".settings.Data_Privacy_Activity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".recordsport.Sport_Intensity_Activity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".settings.Reset_Password_Activity"
             android:exported="false"
@@ -51,6 +56,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".DigitSpan.DigitSpanTask"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".VideoAdapter"
             android:exported="false" />
         <activity
@@ -72,7 +81,7 @@
         <service android:name=".recordsport.TimerService" />
         <service android:name=".sensorrecording.SensorsRecordingService" />
         <service android:name=".utility.SendRecordedDataService" />
-        <service android:name=".utility.StoreRecordedDataService"/>
+        <service android:name=".utility.StoreRecordedDataService" />
 
         <receiver android:name=".questionnaire.QuestionnaireReminder" />
         <receiver android:name=".mainscreen.MainActivity" />
@@ -84,6 +93,19 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <receiver
+            android:name=".MidnightReset"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.example.spomoo.mainscreen.RESET_AT_MIDNIGHT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".VideoReminder"/>
+
     </application>
 
 </manifest>

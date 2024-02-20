@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.spomoo.DigitSpan.DigitSpanTask;
 import com.example.spomoo.databinding.FragmentMainRecordBinding;
 import com.example.spomoo.questionnaire.Questionnaire_Activity;
 import com.example.spomoo.recordsport.Record_Live_Activity;
@@ -46,6 +47,8 @@ public class Main_Record_Fragment extends Fragment {
 
         //card view for Questionnaire_Activity
         binding.mainRecordCardview3.setOnClickListener(v -> startActivity(new Intent(getActivity(), Questionnaire_Activity.class)));
+
+        binding.mainRecordCardview4.setOnClickListener(v -> startActivity(new Intent(getActivity(), DigitSpanTask.class)));
 
     }
 
