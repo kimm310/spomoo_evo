@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 import java.util.ArrayList;
 
@@ -57,7 +58,8 @@ public class VideoList extends AppCompatActivity {
         favList.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                Toast message = Toast.makeText(VideoList.this, "Saved" , Toast.LENGTH_SHORT);
+                message.show();
             }
         });
 
