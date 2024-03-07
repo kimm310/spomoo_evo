@@ -7,17 +7,17 @@ Following features have been added to the project: Video Library, Daily Video Re
 coming soon
 
 ## App Screenshots
-<img src="screenshots/homepage.jpg" width="400" >
-<img src="screenshots/video_library.jpg" width="400" >
-<img src="screenshots/water_tracker.jpg" width="400" >
-<img src="screenshots/digit_span_task.jpg" width="400" >
+<img src="screenshots/homepage.jpg" width="300" >
+<img src="screenshots/video_library.jpg" width="300" >
+<img src="screenshots/water_tracker.jpg" width="300" >
+<img src="screenshots/digit_span_task.jpg" width="300" >
 
 ## Authors
-- https://github.com/juliusmuet
-- https://github.com/Sir-A
-- https://github.com/davidstk1311
-- https://github.com/kimm310
-- https://github.com/Chaii0
+- [@Julius](https://github.com/juliusmuet)
+- [@Sir-A](https://github.com/Sir-A)
+- [@davidstk1311](https://github.com/davidstk1311)
+- [@kimm310](https://github.com/kimm310)
+- [@Charlotte](https://github.com/Chaii0)
 
 ## License
 Copyright 2023 Julius Müther
