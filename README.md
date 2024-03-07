@@ -3,6 +3,12 @@ This Android app was initially developed by https://github.com/juliusmuet/Spomoo
 
 The following features have been added to the project: Video Library, Daily Video Reminder Notifications, Digit Span Task, Water Tracker.
 
+## Download APK file
+coming soon
+
+## Screenshots
+coming soon
+
 ## Authors
 - https://github.com/juliusmuet
 - https://github.com/Sir-A
