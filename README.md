@@ -1,7 +1,9 @@
 # Spomoo Android App
-This Android app was initially developed by https://github.com/juliusmuet/Spomoo and has been further developed as part of the "Android App Evolution" internship at RUB.
+The [original](https://github.com/juliusmuet/Spomoo) Spomoo Android App was developed by Julius Müther and has been further developed by four other students as part of the "Android App Evolution" internship at RUB.
 
-Following features have been added to the project: Video Library, Daily Video Reminder Notifications, Digit Span Task, Water Tracker.
+Following features have been added to the project: Video Library, Video Notifications, Water Tracker, Digit Span Task. The user can access the video library to watch short exercise videos. At random times, the app will notify the user twice a day to remind the user to do these exercises. In addition, the user can track how much water they drank, and they can also do the digit-span task to test their short-term memory.
+
+For more information about the other features and functionalities, visit [Spomoo Github Repository](https://github.com/juliusmuet/Spomoo).
 
 ## Download APK file
 coming soon
@@ -11,6 +13,8 @@ coming soon
 <img src="screenshots/video_library.jpg" width="300" >
 <img src="screenshots/water_tracker.jpg" width="300" >
 <img src="screenshots/digit_span_task.jpg" width="300" >
+
+More screenshots can be viewed here: https://github.com/kimm310/spomoo_evo/tree/master/screenshots
 
 ## Authors
 - [@Julius](https://github.com/juliusmuet)
