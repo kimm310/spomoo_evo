@@ -1,7 +1,7 @@
 # Spomoo Android App
 This Android app was initially developed by https://github.com/juliusmuet/Spomoo and has been further developed as part of the "Android App Evolution" internship at RUB.
 
-The following features have been added to the project: Video Library, Daily Video Reminder Notifications, Digit Span Task, Water Tracker.
+Following features have been added to the project: Video Library, Daily Video Reminder Notifications, Digit Span Task, Water Tracker.
 
 ## Download APK file
 coming soon
