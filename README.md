@@ -6,8 +6,11 @@ Following features have been added to the project: Video Library, Daily Video Re
 ## Download APK file
 coming soon
 
-## Screenshots
-coming soon
+## App Screenshots
+<img src="screenshots/homepage.jpg" width="500" >
+<img src="screenshots/video_library.jpg" width="500" >
+<img src="screenshots/water_tracker.jpg" width="500" >
+<img src="screenshots/digit_span_task.jpg" width="500" >
 
 ## Authors
 - https://github.com/juliusmuet
