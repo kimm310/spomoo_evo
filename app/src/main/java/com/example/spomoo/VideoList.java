@@ -22,8 +22,9 @@ public class VideoList extends AppCompatActivity {
 
     // an dieser stelle videos einfügen
     public String[] videoNames = {"video1", "video2"};
+    //Array used to set videos as liked or not liked
     public boolean[] isFav = {false, true};
-    //private ArrayList<String> likedVideos = new ArrayList<>();
+
     boolean isLiked = false;
     AlertDialog.Builder favList;
 
@@ -53,7 +54,7 @@ public class VideoList extends AppCompatActivity {
         //Builder in favList gespeichert
         favList  = new AlertDialog.Builder(VideoList.this);
 
-        //Nachricht un Button gesetzt
+        //Nachricht und Button gesetzt
         favList.setMessage("Choose your favourite Videos!");
         favList.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
