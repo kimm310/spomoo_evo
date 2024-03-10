@@ -61,8 +61,7 @@ public class VideoList extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                favList.create();
-                favList.show();
+
             }
         });
         favList.setPositiveButton("Save", new DialogInterface.OnClickListener() {
