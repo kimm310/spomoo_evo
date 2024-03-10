@@ -55,15 +55,7 @@ public class VideoList extends AppCompatActivity {
         favList  = new AlertDialog.Builder(VideoList.this);
 
         //Nachricht und Button gesetzt
-        favList.setMessage("Choose your favourite Videos!");
         favList.setTitle("Choose favourites");
-        favList.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast message = Toast.makeText(VideoList.this, "Saved" , Toast.LENGTH_SHORT);
-                message.show();
-            }
-        });
 
         favList.setMultiChoiceItems(videoNames, isFav, new DialogInterface.OnMultiChoiceClickListener() {
 
@@ -73,6 +65,15 @@ public class VideoList extends AppCompatActivity {
                 favList.show();
             }
         });
+        favList.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast message = Toast.makeText(VideoList.this, "Saved" , Toast.LENGTH_SHORT);
+                message.show();
+            }
+        });
+
+
 
     }
 
