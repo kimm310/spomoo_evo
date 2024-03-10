@@ -21,7 +21,7 @@ public class VideoList extends AppCompatActivity {
     private VideoView videoView;
 
     // an dieser stelle videos einfügen
-    public String[] videoNames = {"video1", "video2"};
+    public String[] videoNames = new String[]{"video1", "video2"};
     //Array used to set videos as liked or not liked
     public boolean[] isFav = {false, true};
 
@@ -56,6 +56,7 @@ public class VideoList extends AppCompatActivity {
 
         //Nachricht und Button gesetzt
         favList.setMessage("Choose your favourite Videos!");
+        favList.setTitle("Choose favourites");
         favList.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -65,11 +66,14 @@ public class VideoList extends AppCompatActivity {
         });
 
         favList.setMultiChoiceItems(videoNames, isFav, new DialogInterface.OnMultiChoiceClickListener() {
+
             @Override
             public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-
+                favList.create();
+                favList.show();
             }
         });
+
     }
 
     private void playVideo(String videoName) {
@@ -83,12 +87,14 @@ public class VideoList extends AppCompatActivity {
         if (!isLiked) {
             findViewById(R.id.likeoffbutton).setVisibility(View.INVISIBLE);
             findViewById(R.id.likeonbutton).setVisibility(View.VISIBLE);
+
             favList.show();
             isLiked = true;
         }
         else if (isLiked) {
             findViewById(R.id.likeonbutton).setVisibility(View.INVISIBLE);
             findViewById(R.id.likeoffbutton).setVisibility(View.VISIBLE);
+
             favList.show();
             isLiked = false;
         }
