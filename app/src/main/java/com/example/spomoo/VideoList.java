@@ -29,9 +29,10 @@ public class VideoList extends AppCompatActivity {
 
     // an dieser stelle videos einfügen
     public String[] videoNames = new String[]{"video1", "video2"};
-    //Array used to set videos as liked or not liked
+
     private SharedPreferences preferences;
-    public boolean[] isFav = {false, true};
+    //Array used to set videos as liked or not liked
+    public boolean[] isFav = {false, false};
 
     boolean isLiked = false;
     AlertDialog.Builder favList;
@@ -81,7 +82,7 @@ public class VideoList extends AppCompatActivity {
         });
     }
 
-
+/*
     @Override
     protected void onStart() {
         super.onStart();
@@ -94,31 +95,11 @@ public class VideoList extends AppCompatActivity {
         saveState();
     }
 
+
     // Lade den gespeicherten Zustand der Activity
     private void loadState() {
-        int visib1 = preferences.getInt(KEY_VISIB1, View.INVISIBLE);
-        int visib2 = preferences.getInt(KEY_VISIB2, View.INVISIBLE);
-        int visib3 = preferences.getInt(KEY_VISIB3, View.INVISIBLE);
-        int visib4 = preferences.getInt(KEY_VISIB4, View.INVISIBLE);
-        int visib5 = preferences.getInt(KEY_VISIB5, View.INVISIBLE);
-        int visib6 = preferences.getInt(KEY_VISIB6, View.INVISIBLE);
-        int visib7 = preferences.getInt(KEY_VISIB7, View.INVISIBLE);
-        int visib8 = preferences.getInt(KEY_VISIB8, View.INVISIBLE);
-        int visib9 = preferences.getInt(KEY_VISIB9, View.INVISIBLE);
-        int visib10 = preferences.getInt(KEY_VISIB10, View.INVISIBLE);
-        int count = preferences.getInt(KEY_COUNT, 0);
-        String textMes = preferences.getString(KEY_TEXT_MES, "");
-
-        blue1.setVisibility(visib1);
-        blue2.setVisibility(visib2);
-        blue3.setVisibility(visib3);
-        blue4.setVisibility(visib4);
-        blue5.setVisibility(visib5);
-        blue6.setVisibility(visib6);
-        blue7.setVisibility(visib7);
-        blue8.setVisibility(visib8);
-        blue9.setVisibility(visib9);
-        blue10.setVisibility(visib10);
+        int bo1 = preferences.getInt(KEY_BOOL1, 0);
+        int bo2 = preferences.getInt(KEY_BOOL2, 0);
 
         dropCounter = count;
         upperText.setText(textMes);
@@ -140,6 +121,10 @@ public class VideoList extends AppCompatActivity {
         editor.putString(KEY_TEXT_MES, upperText.getText().toString());
         editor.apply();
     }
+
+
+ */
+
     private void playVideo(String videoName) {
         int videoResId = getResources().getIdentifier(videoName, "raw", getPackageName());
         Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + videoResId);
