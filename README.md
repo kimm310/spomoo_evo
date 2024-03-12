@@ -9,10 +9,10 @@ For more information about the other features and functionalities, visit [Spomoo
 coming soon
 
 ## App Screenshots
-<img src="screenshots/homepage.jpg" width="300" >
-<img src="screenshots/video_library.jpg" width="300" >
-<img src="screenshots/water_tracker.jpg" width="300" >
-<img src="screenshots/digit_span_task.jpg" width="300" >
+<img src="screenshots/homepage_new.jpg" width="250" >
+<img src="screenshots/video_library_player.jpg" width="250" >
+<img src="screenshots/water_tracker.jpg" width="250" >
+<img src="screenshots/digit_span_task.jpg" width="250" >
 
 More screenshots can be viewed here: https://github.com/kimm310/spomoo_evo/tree/master/screenshots
 
