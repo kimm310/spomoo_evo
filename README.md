@@ -5,9 +5,6 @@ Following features have been added to the project: Video Library, Video Notifica
 
 For more information about the other features and functionalities, visit [Spomoo Github Repository](https://github.com/juliusmuet/Spomoo).
 
-## Download APK file
-coming soon
-
 ## App Screenshots
 <img src="screenshots/homepage_new.jpg" width="250" >
 <img src="screenshots/video_library_player.jpg" width="250" >
